@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TabsCollectionViewCell" id="gTV-IL-0wX" customClass="TabsCollectionViewCell" customModule="Gladiance" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="252" height="99"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="252" height="99"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KjH-0v-WWK">
+                        <rect key="frame" x="3" y="5" width="246" height="89"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yOu-bf-53I">
+                                <rect key="frame" x="1" y="1" width="244" height="87"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kU3-WX-ZTp">
+                                        <rect key="frame" x="20" y="10" width="204" height="67"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="kU3-WX-ZTp" secondAttribute="bottom" constant="10" id="HFZ-lr-jGA"/>
+                                    <constraint firstItem="kU3-WX-ZTp" firstAttribute="leading" secondItem="yOu-bf-53I" secondAttribute="leading" constant="20" id="Hm6-Ub-OIb"/>
+                                    <constraint firstItem="kU3-WX-ZTp" firstAttribute="top" secondItem="yOu-bf-53I" secondAttribute="top" constant="10" id="QNR-0q-VBP"/>
+                                    <constraint firstAttribute="trailing" secondItem="kU3-WX-ZTp" secondAttribute="trailing" constant="20" id="ycU-EW-eRb"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="yOu-bf-53I" firstAttribute="top" secondItem="KjH-0v-WWK" secondAttribute="top" constant="1" id="CSY-AL-0d9"/>
+                            <constraint firstAttribute="bottom" secondItem="yOu-bf-53I" secondAttribute="bottom" constant="1" id="Xx9-ie-aEj"/>
+                            <constraint firstAttribute="trailing" secondItem="yOu-bf-53I" secondAttribute="trailing" constant="1" id="cQD-4x-Z3n"/>
+                            <constraint firstItem="yOu-bf-53I" firstAttribute="leading" secondItem="KjH-0v-WWK" secondAttribute="leading" constant="1" id="kPS-y5-Vgb"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="KjH-0v-WWK" secondAttribute="bottom" constant="5" id="ANA-yg-Z3H"/>
+                <constraint firstAttribute="trailing" secondItem="KjH-0v-WWK" secondAttribute="trailing" constant="3" id="IcY-gY-A8e"/>
+                <constraint firstItem="KjH-0v-WWK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="owp-vI-smr"/>
+                <constraint firstItem="KjH-0v-WWK" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="3" id="pfD-no-RFP"/>
+            </constraints>
+            <size key="customSize" width="252" height="99"/>
+            <connections>
+                <outlet property="lblTabName" destination="kU3-WX-ZTp" id="ZHm-2O-DRx"/>
+                <outlet property="mnView" destination="yOu-bf-53I" id="zPT-gk-1ag"/>
+                <outlet property="shView" destination="KjH-0v-WWK" id="3gp-ge-eWS"/>
+            </connections>
+            <point key="canvasLocation" x="203.0534351145038" y="36.971830985915496"/>
+        </collectionViewCell>
+    </objects>
+</document>
