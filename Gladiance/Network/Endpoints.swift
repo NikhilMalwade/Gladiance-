@@ -14,5 +14,7 @@ enum Endpoints:String {
     case spacegrouplandingpagedata = "spacegrouplandingpagedata/"
     case spacelandingpagedata = "spacelandingpagedata"
     case arealandingpageguestcontrols = "arealandingpageguestcontrols"
+    case nodeconfig = "mqtt/nodeconfig"
+//    mqtt/nodeconfig
 }
 

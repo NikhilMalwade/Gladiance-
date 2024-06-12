@@ -21,6 +21,12 @@ class FanViewController: UIViewController {
     let progressView1 = CircularProgressView(frame: CGRect(x: 0, y: 0, width: 200, height: 200), lineWidth: 15, rounded: false)
     override func viewDidLoad() {
         super.viewDidLoad()
+        SetupView()
+        self.navigationController?.interactivePopGestureRecognizer!.delegate = self;
+
+    }
+    
+    func SetupView(){
         lblCount.text = "\(0)"
 
         setRoundCornerToView(mnView: shMinusView, radius: shMinusView.frame.size.width/2)
@@ -30,7 +36,6 @@ class FanViewController: UIViewController {
         progressView1.trackColor = .white
         progressView.addSubview(progressView1)
         progressView1.progress = min
-        // Do any additional setup after loading the view.
     }
     
     func lblControl(){

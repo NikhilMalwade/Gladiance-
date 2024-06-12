@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import UIKit
 
-class HVCViewModel{
+final class HVCViewModel: UIViewController{
     
     var loginLandingDataArr : LoginLandingData!
     var data: Data!
@@ -38,8 +39,8 @@ class HVCViewModel{
         
         ApiCaller.shared.LoginLandingPageApi { [self] result,err in
             loginLandingDataArr = result
-//            setLoading()
             if loginLandingDataArr.successful == true{
+
                 data = loginLandingDataArr.data
                 for i in data.projects ?? []{
                     projectsdata.append(i)
@@ -53,26 +54,25 @@ class HVCViewModel{
     func ProductApiCall(ref:String){
         
         self.eventHandler?(.loading)
-        ApiCaller.shared.ProductLandingPageApi(ref: ref) { result in
+        ApiCaller.shared.ProductLandingPageApi() { result in
             self.eventHandler?(.stopLoading)
-            
+
             
             switch result{
             case .success(let resultdata):
                 print("success")
+
                 self.ProductLandingDic = resultdata
                 
                 if self.ProductLandingDic.successful == true{
                     self.dataModel = self.ProductLandingDic.data
-       //             print(self.dataModel!)
                     var arr = []
                     for i in self.dataModel.spaceGroups ?? []{
                         self.ProductLandingArr.append(i)
                         arr.append(i.gAAProjectSpaceGroupRef!)
                     }
 //                    self.SpaceGroupArr.removeAll()
-//                    self.spaceGroupLandingApicall(ref: "\(arr[0])" )
-//                    print("----------------------\(arr[0])")
+                    self.spaceGroupLandingApicall()
                     self.eventHandler?(.dataLoaded)
                 }
             case .failure(_):
@@ -83,24 +83,35 @@ class HVCViewModel{
     
     //MARK: Space group Landing Api call
 
-    func spaceGroupLandingApicall(ref:String){
+    func spaceGroupLandingApicall(){
         self.eventHandler?(.loading)
-        ApiCaller.shared.SpaceGroupLandingPageApi(ref: ref) { [self] result in
+        ApiCaller.shared.SpaceGroupLandingPageApi() { [self] result in
             self.eventHandler?(.stopLoading)
             
             switch result{
                 
             case .success(let resultdata):
+
                 self.SpaceGroupLandingDic = resultdata
                 
                 if self.SpaceGroupLandingDic.successful == true{
 
                     self.SpaceGroupDataModel = self.SpaceGroupLandingDic.data
+                    var arr = []
+                    var spacerefArr = []
+                    self.SpaceGroupArr.removeAll()
+                    
                     for i in self.SpaceGroupDataModel.spaces ?? []{
                         SpaceGroupArr.append(i)
-                        print(SpaceGroupArr)
+                        arr.append(i.gAAProjectSpaceName!)
+                        spacerefArr.append(i.gAAProjectSpaceRef!)
                     }
-                    self.eventHandler1?(.dataUpdated)
+                    print(SpaceGroupArr)
+
+                    let Id = (spacerefArr[0]) as! Int
+                    ProjectSpaceRef = "\(Id)"
+                    SpaceName = arr[0] as! String
+//                    self.eventHandler1?(.dataUpdated)
 
                     self.eventHandler?(.dataLoaded)
                 }
@@ -112,28 +123,31 @@ class HVCViewModel{
     
     //MARK: Space Landing Api call
 
-    func spaceLandingApicall(ref: String){
+    func spaceLandingApicall(){
         self.eventHandler?(.loading)
-        ApiCaller.shared.SpaceLandingPageApi(ref: ref) { [self] result in
+        ApiCaller.shared.SpaceLandingPageApi() { [self] result in
             self.eventHandler?(.stopLoading)
             
             switch result{
                 
             case .success(let resultdata):
+
                 self.SpaceLandingDic = resultdata
                 
                 if self.SpaceLandingDic.successful == true{
                     self.SpaceDataModel = self.SpaceLandingDic.data
                     var arr = []
-
-                    SpaceGroupArr.removeAll()
+                    var arr1 = []
+                    areasArr.removeAll()
                     for i in self.SpaceDataModel.areas ?? []{
                         areasArr.append(i)
                         arr.append(i.gAAProjectSpaceTypeAreaRef!)
+                        arr1.append(i.gAAProjectSpaceTypeAreaName!)
 
                         print(SpaceGroupArr)
                     }
-                    viewmodel.areaLandingApicall(ref: "\(arr[0])")
+                    let Id = (arr[0]) as! Int
+                    ProjectSpaceTypeAreaRef = "\(Id)"
                     print("----------------------\(arr[0])")
                     self.eventHandler?(.dataLoaded)
                 }

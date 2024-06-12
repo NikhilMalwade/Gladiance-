@@ -16,8 +16,9 @@ class DemoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController?.navigationItem.hidesBackButton = true
-        
+//        self.tabBarController?.navigationItem.hidesBackButton = true
+        self.navigationController?.interactivePopGestureRecognizer!.delegate = self;
+
         viewmodel.apicaller()
         lblName.text = UserName
         HomeCollectionView.register(UINib(nibName: "HomeTabCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "HomeTabCollectionViewCell")
@@ -53,7 +54,8 @@ extension DemoViewController: UICollectionViewDelegate,UICollectionViewDataSourc
         
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "ProjectSpaceViewController") as! ProjectSpaceViewController
         vc.RefName = dic.gAAProjectName!
-        vc.ref = "\(String(describing: dic.gAAProjectRef!))"
+        ProjectName = dic.gAAProjectName!
+        ProjectRef = "\(String(describing: dic.gAAProjectRef!))"
         
         self.navigationController?.pushViewController(vc, animated:  true)
     }

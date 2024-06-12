@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class ApiCaller {
+class ApiCaller: UIViewController {
     static let shared = ApiCaller()
     
     //Login Api
@@ -49,6 +49,8 @@ class ApiCaller {
     
     
     func LoginLandingPageApi(completion: @escaping (LoginLandingData, Error?) -> () ){
+       
+
         guard let url = URL(string: baseURL.rawValue + ApiNodes.loginlandingpagedata.rawValue + LoginToken + "/" + DeviceID ) else {
             return
         }
@@ -60,6 +62,7 @@ class ApiCaller {
             do {
                 let response = try JSONDecoder().decode(LoginLandingData.self, from: data)
                 // print(response)
+
                 completion(response,nil)
             }catch{
                 
@@ -69,9 +72,10 @@ class ApiCaller {
     
     //MARK: Product Landing Page Data
     
-    func ProductLandingPageApi(ref:String,completion: @escaping (Result<ProductLandingModel, Error>) -> () ){
+    func ProductLandingPageApi(completion: @escaping (Result<ProductLandingModel, Error>) -> () ){
         
-        guard let url = URL(string: baseURL.rawValue + Endpoints.projectlandingpagedata.rawValue + ref + "/" + LoginToken + "/" + DeviceID ) else {
+
+        guard let url = URL(string: baseURL.rawValue + Endpoints.projectlandingpagedata.rawValue + ProjectRef + "/" + LoginToken + "/" + DeviceID ) else {
             return
         }
          print(url)
@@ -87,6 +91,7 @@ class ApiCaller {
                 for i in dic ?? []{
                     arr.append(i.gAAProjectSpaceGroupRef!)
                 }
+
                 completion(.success(response))
             }catch{
                 completion(.failure(error))
@@ -94,8 +99,10 @@ class ApiCaller {
         }.resume()
     }
     
-    func SpaceGroupLandingPageApi(ref:String,completion: @escaping (Result<SpaceGroupLandingModel, Error>) -> () ){
-        guard let url = URL(string: baseURL.rawValue + Endpoints.spacegrouplandingpagedata.rawValue + RefId + "/" + LoginToken + "/" + DeviceID ) else {
+    func SpaceGroupLandingPageApi(completion: @escaping (Result<SpaceGroupLandingModel, Error>) -> () ){
+      
+
+        guard let url = URL(string: baseURL.rawValue + Endpoints.spacegrouplandingpagedata.rawValue + ProjectSpaceGroupRef + "/" + LoginToken + "/" + DeviceID ) else {
             return
         }
         print(url)
@@ -105,6 +112,7 @@ class ApiCaller {
             
             do {
                 let response = try JSONDecoder().decode(SpaceGroupLandingModel.self, from: data)
+
                 completion(.success(response))
             }catch{
                 completion(.failure(error))
@@ -112,8 +120,10 @@ class ApiCaller {
         }.resume()
     }
     
-    func SpaceLandingPageApi(ref:String, completion: @escaping (Result<SpaceLandingModel, Error>) -> () ){
-        guard let url = URL(string: baseURL.rawValue + Endpoints.spacelandingpagedata.rawValue + "/" + ref + "/" + LoginToken + "/" + DeviceID ) else {
+    func SpaceLandingPageApi(completion: @escaping (Result<SpaceLandingModel, Error>) -> () ){
+      
+
+        guard let url = URL(string: baseURL.rawValue + Endpoints.spacelandingpagedata.rawValue + "/" + ProjectSpaceRef + "/" + LoginToken + "/" + DeviceID ) else {
             return
         }
         print(url)
@@ -123,6 +133,7 @@ class ApiCaller {
             
             do {
                 let response = try JSONDecoder().decode(SpaceLandingModel.self, from: data)
+
                 completion(.success(response))
             }catch{
                 completion(.failure(error))
@@ -130,8 +141,10 @@ class ApiCaller {
         }.resume()
     }
     
-    func areaLandingPageApi(ref:String, completion: @escaping (Result<areaLandingModel, Error>) -> () ){
-        guard let url = URL(string: baseURL.rawValue + Endpoints.arealandingpageguestcontrols.rawValue + "/" + RefId1 + "/" + ref + "/" + LoginToken + "/" + DeviceID ) else {
+    func areaLandingPageApi(completion: @escaping (Result<areaLandingModel, Error>) -> () ){
+
+
+        guard let url = URL(string: baseURL.rawValue + Endpoints.arealandingpageguestcontrols.rawValue + "/" + ProjectSpaceRef + "/" + ProjectSpaceTypeAreaRef + "/" + LoginToken + "/" + DeviceID ) else {
             return
         }
         print(url)
@@ -141,6 +154,30 @@ class ApiCaller {
             
             do {
                 let response = try JSONDecoder().decode(areaLandingModel.self, from: data)
+
+                completion(.success(response))
+            }catch{
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+    
+    //MARK: Node Config Api
+    
+    func nodeConfigApi(node:String, completion: @escaping (Result<nodeConfigModel, Error>) -> () ){
+
+
+        guard let url = URL(string: ApiNodes.NodeBaseUrl.rawValue + Endpoints.nodeconfig.rawValue + "/"   + node ) else {
+            return
+        }
+        print(url)
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data else {return}
+            
+            do {
+                let response = try JSONDecoder().decode(nodeConfigModel.self, from: data)
+
                 completion(.success(response))
             }catch{
                 completion(.failure(error))

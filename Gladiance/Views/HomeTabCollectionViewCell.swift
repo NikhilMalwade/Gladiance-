@@ -19,7 +19,9 @@ class HomeTabCollectionViewCell: UICollectionViewCell {
         // Initialization code
         
        // setShadowToView(shView: shView, mnView: mnView)
+        shView.backgroundColor = GreyColour
         setRoundCornerToView(mnView: mnView, radius: 5)
+        setShadowToView(shView: shView, mnView: mnView)
     }
 
 }

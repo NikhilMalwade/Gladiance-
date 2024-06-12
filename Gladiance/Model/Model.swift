@@ -434,3 +434,159 @@ struct Controls : Decodable {
     }
 
 }
+
+//MARK: Node Config Model
+
+
+struct nodeConfigModel : Decodable {
+    let node_id : String?
+    let config_version : String?
+    let info : Info?
+    let devices : [Devices]?
+    let serviceices : [Serviceices]?
+
+    enum CodingKeys: String, CodingKey {
+
+        case node_id = "node_id"
+        case config_version = "config_version"
+        case info = "info"
+        case devices = "devices"
+        case serviceices = "Serviceices"
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        node_id = try values.decodeIfPresent(String.self, forKey: .node_id)
+        config_version = try values.decodeIfPresent(String.self, forKey: .config_version)
+        info = try values.decodeIfPresent(Info.self, forKey: .info)
+        devices = try values.decodeIfPresent([Devices].self, forKey: .devices)
+        serviceices = try values.decodeIfPresent([Serviceices].self, forKey: .serviceices)
+    }
+
+}
+
+
+struct Info : Decodable {
+    let name : String?
+    let fw_version : String?
+    let type : String?
+    let model : String?
+    let project_name : String?
+    let platform : String?
+
+    enum CodingKeys: String, CodingKey {
+
+        case name = "name"
+        case fw_version = "fw_version"
+        case type = "type"
+        case model = "Model"
+        case project_name = "project_name"
+        case platform = "platform"
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        name = try values.decodeIfPresent(String.self, forKey: .name)
+        fw_version = try values.decodeIfPresent(String.self, forKey: .fw_version)
+        type = try values.decodeIfPresent(String.self, forKey: .type)
+        model = try values.decodeIfPresent(String.self, forKey: .model)
+        project_name = try values.decodeIfPresent(String.self, forKey: .project_name)
+        platform = try values.decodeIfPresent(String.self, forKey: .platform)
+    }
+
+}
+
+struct Devices : Decodable {
+    let name : String?
+    let type : String?
+    let model : String?
+    let attributes : [Attributes]?
+    let primary : String?
+    let params : [Params]?
+
+    enum CodingKeys: String, CodingKey {
+
+        case name = "name"
+        case type = "type"
+        case model = "Model"
+        case attributes = "attributes"
+        case primary = "primary"
+        case params = "params"
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        name = try values.decodeIfPresent(String.self, forKey: .name)
+        type = try values.decodeIfPresent(String.self, forKey: .type)
+        model = try values.decodeIfPresent(String.self, forKey: .model)
+        attributes = try values.decodeIfPresent([Attributes].self, forKey: .attributes)
+        primary = try values.decodeIfPresent(String.self, forKey: .primary)
+        params = try values.decodeIfPresent([Params].self, forKey: .params)
+    }
+
+}
+
+struct Serviceices : Decodable {
+    let name : String?
+    let type : String?
+    let params : [Params]?
+
+    enum CodingKeys: String, CodingKey {
+
+        case name = "name"
+        case type = "type"
+        case params = "params"
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        name = try values.decodeIfPresent(String.self, forKey: .name)
+        type = try values.decodeIfPresent(String.self, forKey: .type)
+        params = try values.decodeIfPresent([Params].self, forKey: .params)
+    }
+
+}
+
+struct Attributes : Decodable {
+    let name : String?
+    let value : String?
+
+    enum CodingKeys: String, CodingKey {
+
+        case name = "name"
+        case value = "value"
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        name = try values.decodeIfPresent(String.self, forKey: .name)
+        value = try values.decodeIfPresent(String.self, forKey: .value)
+    }
+
+}
+
+
+struct Params : Decodable {
+    let name : String?
+    let type : String?
+    let data_type : String?
+    let properties : [String]?
+
+    enum CodingKeys: String, CodingKey {
+
+        case name = "name"
+        case type = "type"
+        case data_type = "data_type"
+        case properties = "properties"
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        name = try values.decodeIfPresent(String.self, forKey: .name)
+        type = try values.decodeIfPresent(String.self, forKey: .type)
+        data_type = try values.decodeIfPresent(String.self, forKey: .data_type)
+        properties = try values.decodeIfPresent([String].self, forKey: .properties)
+    }
+
+}
+

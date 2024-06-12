@@ -13,6 +13,7 @@ enum ApiNodes:String {
     
     case loginuser = "loginuser"
     case loginlandingpagedata = "loginlandingpagedata/"
+    case NodeBaseUrl = "https://api.gladiance.one/gladiancecloud-web-api/"
 }
 
 let baseURL = ApiNodes.ProdBaseURL

@@ -14,7 +14,8 @@ class signupViewController:UIViewController{
     @IBOutlet weak var btnSignUp: UIButton!
     @IBOutlet weak var btnAgreement: UIButton!
     override func viewDidLoad() {
-        
+        self.navigationController?.interactivePopGestureRecognizer!.delegate = self;
+
         buttonSetup()
     }
     @IBAction func signInbtnClicked(_ sender: Any) {

@@ -13,14 +13,15 @@ class ProjectSpaceViewController: UIViewController {
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblHotelName: UILabel!
     
-    var ref = ""
     var RefName = ""
 
     var viewmodel = HVCViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController?.navigationItem.hidesBackButton = true
+        self.navigationController?.interactivePopGestureRecognizer!.delegate = self;
+
+//        self.tabBarController?.navigationItem.hidesBackButton = true
         lblName.text = UserName
         lblHotelName.text = RefName
 
@@ -28,7 +29,7 @@ class ProjectSpaceViewController: UIViewController {
         navigationItem.hidesBackButton = true
         self.navigationController?.isNavigationBarHidden = true
         observeEvent()
-        self.viewmodel.ProductApiCall(ref: ref)
+        self.viewmodel.ProductApiCall(ref: ProjectRef)
 
     }
     
@@ -70,6 +71,7 @@ extension ProjectSpaceViewController: UICollectionViewDelegate,UICollectionViewD
         let cell = HomeCollectionView.dequeueReusableCell(withReuseIdentifier: "HomeTabCollectionViewCell", for: indexPath) as! HomeTabCollectionViewCell
         let dic = viewmodel.ProductLandingArr[indexPath.row]
         cell.lblTabName.text = dic.gAAProjectSpaceGroupName!
+        
         return cell
     }
     
@@ -77,8 +79,9 @@ extension ProjectSpaceViewController: UICollectionViewDelegate,UICollectionViewD
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
         
         let dic = viewmodel.ProductLandingArr[indexPath.row]
-        RefId = "\(String(describing: dic.gAAProjectSpaceGroupRef!))"
+        ProjectSpaceGroupRef = "\(dic.gAAProjectSpaceGroupRef!)"
         
+//        SpaceName = dic.gAAProjectSpaceGroupName!
         vc.tabBar.isHidden = false
         vc.selectedIndex = 2
         

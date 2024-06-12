@@ -19,7 +19,8 @@ class OTPViewController:UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.interactivePopGestureRecognizer!.delegate = self;
+
         buttonSetup()
         // Assign delegates to text fields
         for field in otpFields {

@@ -8,82 +8,49 @@
 import UIKit
 
 class RoomControllViewController: UIViewController {
-    @IBOutlet weak var tabViewCollectionView: UICollectionView!
+    
+    @IBOutlet weak var tabCollectionView: UICollectionView!
+    @IBOutlet weak var SpaceCollectionView: UICollectionView!
     @IBOutlet weak var homeCollectionView: UICollectionView!
+    
     @IBOutlet weak var lblTabName: UILabel!
     @IBOutlet weak var shview: UIView!
-    @IBOutlet weak var btnName: UIButton!
+    @IBOutlet weak var lblSpaceName: UILabel!
     
-    //var selecteditem = ""
-    var Index = 0
-    var ref = ""
-    
-    var SelectedProductArr = [String]()
-    var SelectedRefArr = [Int]()
     var viewmodel = HVCViewModel()
     var viewmodel1 = RemoteViewModel()
+    var nodeID = ""
+    var Switch = Bool()
+    var SwitchCount = Int()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setRoundCornerToView(mnView: shview, radius: 15)
-        self.tabBarController?.navigationItem.hidesBackButton = true
-        tabBarController?.tabBar.isHidden = false
-        
-        self.tabViewCollectionView.register(UINib(nibName: "TabsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TabsCollectionViewCell")
-        self.homeCollectionView.register(UINib(nibName: "HomeTabCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "HomeTabCollectionViewCell")
-        
-        tabViewCollectionView.dataSource = self
-        tabViewCollectionView.delegate = self
-        
-        self.viewmodel.spaceLandingApicall(ref: RefId1)
-        self.homeCollectionView.reloadData()
+        self.viewmodel.spaceGroupLandingApicall()
+        self.lblSpaceName.text = "\(SpaceName)"
+        Switch = false
+        getSpaceLandingData()
+        self.navigationController?.interactivePopGestureRecognizer!.delegate = self;
 
+        setRoundCornerToView(mnView: shview, radius: 15)
+        
+        RegisterCell()
         observeEvent()
     }
     
-    func dropDownButton(){
-        
-        let actionClosure = { [self] (action: UIAction) in
-            print(action.title)
-            Index = SelectedProductArr.firstIndex(where: {$0 == action.title})!
-            ref = "\(SelectedRefArr[Index])"
-            demo()
+    func getSpaceLandingData(){
+        self.viewmodel.spaceLandingApicall()
+        do {
+            sleep(1)
+            getAreaLandingData()
         }
-        
-        var menuChildren: [UIMenuElement] = []
-        
-        for i in viewmodel.areasArr {
-            menuChildren.append(UIAction(title: i.gAAProjectSpaceTypeAreaName!,state: .on, handler: actionClosure))
-            SelectedProductArr.append(i.gAAProjectSpaceTypeAreaName!)
-            SelectedRefArr.append(i.gAAProjectSpaceTypeAreaRef!)
-        }
-        btnName.menu = UIMenu(options: .displayInline, children: menuChildren)
-        btnName.showsMenuAsPrimaryAction = true
-        btnName.setTitleColor(.white, for: .normal)
-        btnName.changesSelectionAsPrimaryAction = true
     }
-    
-    func demo(){
-        self.viewmodel1.areaLandingApicall(ref: self.ref)
-        UpdatedData()
-        self.homeCollectionView.reloadData()
+    func getAreaLandingData(){
+
+        self.viewmodel1.areaLandingApicall()
+        homeCollectionView.reloadData()
 
     }
     
-    func UpdatedData(){
-        viewmodel1.eventHandler1 = { [weak self] event in
-            guard let self else { return }
-            
-            switch event {
-            case .dataUpdated:
-                DispatchQueue.main.async {
-                    self.tabViewCollectionView.reloadData()
-                    self.homeCollectionView.reloadData()
-                    print("data updated")}
-            }
-        }
-    }
     func observeEvent() {
         viewmodel.eventHandler = { [weak self] event in
             guard let self else { return }
@@ -95,8 +62,8 @@ class RoomControllViewController: UIViewController {
             case .dataLoaded:
                 print("Data loaded...")
                 DispatchQueue.main.async {
-                    self.dropDownButton()
-                    self.tabViewCollectionView.reloadData()
+                    self.SpaceCollectionView.reloadData()
+                    self.tabCollectionView.reloadData()
                     self.homeCollectionView.reloadData()
                 }
             case .error(let error):
@@ -113,8 +80,8 @@ class RoomControllViewController: UIViewController {
             case .dataLoaded:
                 print("Data loaded...")
                 DispatchQueue.main.async {
-                    self.dropDownButton()
-                    self.tabViewCollectionView.reloadData()
+                    self.SpaceCollectionView.reloadData()
+                    self.tabCollectionView.reloadData()
                     self.homeCollectionView.reloadData()
                 }
             case .error(let error):
@@ -122,68 +89,157 @@ class RoomControllViewController: UIViewController {
             }
         }
     }
+    
+    func nodeid(nodeid : String){
+        viewmodel1.nodeConfigApiCall(node: nodeid) { success in
+            if success{
+                for dic in self.viewmodel1.DevicesDic{
+                    print(dic.type)
+                    if dic.type == "esp.device.light"{
+                        DispatchQueue.main.async {
+                            let vc = self.storyboard!.instantiateViewController(withIdentifier: "CoveViewController") as! CoveViewController
+//                            vc.modalPresentationStyle = .currentContext
+//                            self.present(vc, animated: true)
+                            
+                            self.navigationController?.pushViewController(vc, animated:  true)
+                        }
+                    } else if dic.type == "esp.device.switch"{
+                        DispatchQueue.main.async {
+//                            self.Switch = true
+//                            self.SwitchCount = 1
+                            let vc = self.storyboard!.instantiateViewController(withIdentifier: "SwitchViewController") as! SwitchViewController
+                            self.navigationController?.pushViewController(vc, animated:  true)
+                        }
+                    }
+                    else if dic.type == "esp.device.fan"{
+                        DispatchQueue.main.async {
+                            let vc = self.storyboard!.instantiateViewController(withIdentifier: "FanViewController") as! FanViewController
+                            self.navigationController?.pushViewController(vc, animated:  true)
+                            
+                        }
+                    }
+                    else{
+                        
+                    }
+                }  
+            }
+        }
+        print("completed")
+    }
+ 
 }
 
 extension RoomControllViewController: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     
+    func RegisterCell(){
+        self.tabCollectionView.register(UINib(nibName: "TabsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TabsCollectionViewCell")
+        self.SpaceCollectionView.register(UINib(nibName: "TabsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TabsCollectionViewCell")
+        self.homeCollectionView.register(UINib(nibName: "HomeTabCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "HomeTabCollectionViewCell")
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == tabViewCollectionView{
-            print("----------------------------\(viewmodel1.guestArr.count)----------------------------")
+        if collectionView == SpaceCollectionView {
+            self.tabCollectionView.reloadData()
+            return viewmodel.areasArr.count
+            
+        }
+        else if collectionView == tabCollectionView {
+            self.homeCollectionView.reloadData()
             return viewmodel1.guestArr.count
-        }else{
-            print("----------------------------\(viewmodel1.controlArr.count)----------------------------")
-            return viewmodel1.controlArr.count
+        }
+        else{
+            if Switch{
+                return SwitchCount
+
+            }else{
+                return viewmodel1.controlArr.count
+
+            }
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == tabViewCollectionView
-        {
-            let cell = tabViewCollectionView.dequeueReusableCell(withReuseIdentifier: "TabsCollectionViewCell", for: indexPath) as! TabsCollectionViewCell
-            let dic = viewmodel1.guestArr[indexPath.row]
-            print("----------------------------\(dic.controlTypeName!)----------------------------")
-            cell.lblTabName.text = dic.controlTypeName!
+        if collectionView == SpaceCollectionView{
+            
+            let cell = SpaceCollectionView.dequeueReusableCell(withReuseIdentifier: "TabsCollectionViewCell", for: indexPath) as! TabsCollectionViewCell
+            let dic = viewmodel.areasArr[indexPath.row]
+            cell.lblTabName.text = dic.gAAProjectSpaceTypeAreaName!
+            
+            return cell
+            
+        } else if collectionView == tabCollectionView{
+
+            let cell = tabCollectionView.dequeueReusableCell(withReuseIdentifier: "TabsCollectionViewCell", for: indexPath) as! TabsCollectionViewCell
+
+                
+                let dic = viewmodel1.guestArr[indexPath.row]
+                print(viewmodel1.guestArr)
+                    cell.lblTabName.text = dic.controlTypeName!
+          
             return cell
         }
         else
         {
             let cell = homeCollectionView.dequeueReusableCell(withReuseIdentifier: "HomeTabCollectionViewCell", for: indexPath) as! HomeTabCollectionViewCell
-            let dic = viewmodel1.controlArr[indexPath.row]
-            cell.lblTabName.text = dic.gAAProjectSpaceTypePlannedDeviceName!
             
+            
+            if Switch{
+                cell.lblTabName.text = "Switch"
+                
+
+            }else{
+                let dic = viewmodel1.controlArr[indexPath.row]
+                
+                cell.lblTabName.text = dic.gAAProjectSpaceTypePlannedDeviceName!
+
+            }
             return cell
             
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == tabViewCollectionView
-        {
-            print(indexPath.row)
-            var dic = viewmodel.SpaceGroupArr[indexPath.row]
-            DispatchQueue.main.async {
-                
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "FanViewController") as! FanViewController
-                RefId1 = "\(dic.gAAProjectSpaceRef!)"
-                self.navigationController?.pushViewController(vc, animated:  true)
-                
-            }
-        }
-        else{
+        
+        if collectionView == SpaceCollectionView{
             
+            let dic = viewmodel.SpaceGroupArr[indexPath.row]
+            ProjectSpaceRef = "\(dic.gAAProjectSpaceRef!)"
+            getSpaceLandingData()
+            
+        } else if collectionView == tabCollectionView{
+            let dic = viewmodel1.guestArr[indexPath.row]
+            print(indexPath.row)
+            viewmodel1.controlArr[indexPath.row]
+            tabCollectionView.reloadData()
+        }
+        else if collectionView == homeCollectionView{
+            
+            let dic = viewmodel1.controlArr[indexPath.row]
+            print(dic.nodeId)
+            if Switch{
+//                Switch = false
+
+                let cell = homeCollectionView.dequeueReusableCell(withReuseIdentifier: "HomeTabCollectionViewCell", for: indexPath) as! HomeTabCollectionViewCell
+                cell.shView.backgroundColor = .orange
+                cell.mnView.backgroundColor = .orange
+
+            }else{
+                nodeid(nodeid: dic.nodeId!)
+
+            }
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == homeCollectionView  {
             
-                
-                let screenWidth = homeCollectionView.bounds.width - 15
-                let scaleFactor = (screenWidth / 2)
-                
-                return CGSize(width: scaleFactor, height: scaleFactor)
+            let screenWidth = homeCollectionView.bounds.width - 15
+            let scaleFactor = (screenWidth / 2)
+            
+            return CGSize(width: scaleFactor, height: scaleFactor)
         }
-        return CGSize(width: tabViewCollectionView.frame.width, height: tabViewCollectionView.frame.height)
+        return CGSize(width: tabCollectionView.frame.width, height: tabCollectionView.frame.height)
     }
     
+
 }

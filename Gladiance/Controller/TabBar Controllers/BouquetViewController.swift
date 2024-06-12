@@ -30,7 +30,7 @@ class BouquetViewController: UIViewController {
     ]
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController?.navigationItem.hidesBackButton = true
+//        self.tabBarController?.navigationItem.hidesBackButton = true
 
         setRoundCornerToView(mnView: shview, radius: 15)
         setup()

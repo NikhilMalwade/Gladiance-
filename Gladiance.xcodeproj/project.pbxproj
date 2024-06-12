@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A0800262C0994190016DFD6 /* CoveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0800252C0994190016DFD6 /* CoveViewController.swift */; };
 		3A0C9BA02BF71C7000595FD6 /* FanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0C9B9F2BF71C7000595FD6 /* FanViewController.swift */; };
 		3A4BDD382BEF740F0098AAB0 /* RemoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4BDD372BEF740F0098AAB0 /* RemoteViewModel.swift */; };
+		3A4E9C962C19618500E3F363 /* SwitchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4E9C952C19618500E3F363 /* SwitchViewController.swift */; };
 		3A4F24462BECE03D005F96F8 /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4F24452BECE03D005F96F8 /* Endpoints.swift */; };
 		3A5E87292BE939E100B9C134 /* JoinUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5E87282BE939E100B9C134 /* JoinUserViewController.swift */; };
 		3A5E872C2BE9EB2E00B9C134 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5E872B2BE9EB2E00B9C134 /* NetworkManager.swift */; };
 		3A5E872E2BE9F74800B9C134 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5E872D2BE9F74800B9C134 /* Model.swift */; };
-		3A7826852BED3E55000AF096 /* HotelsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7826832BED3E55000AF096 /* HotelsTableViewCell.swift */; };
-		3A7826862BED3E55000AF096 /* HotelsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A7826842BED3E55000AF096 /* HotelsTableViewCell.xib */; };
 		3A7A92912BE62DB800746041 /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A92902BE62DB800746041 /* DemoViewController.swift */; };
 		3A7D5C532BEAB07200A462A9 /* ApiCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D5C522BEAB07200A462A9 /* ApiCaller.swift */; };
 		3A7D5C552BEAB14400A462A9 /* HVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D5C542BEAB14400A462A9 /* HVCViewModel.swift */; };
@@ -44,14 +44,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A0800252C0994190016DFD6 /* CoveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoveViewController.swift; sourceTree = "<group>"; };
 		3A0C9B9F2BF71C7000595FD6 /* FanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FanViewController.swift; sourceTree = "<group>"; };
 		3A4BDD372BEF740F0098AAB0 /* RemoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteViewModel.swift; sourceTree = "<group>"; };
+		3A4E9C952C19618500E3F363 /* SwitchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchViewController.swift; sourceTree = "<group>"; };
 		3A4F24452BECE03D005F96F8 /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		3A5E87282BE939E100B9C134 /* JoinUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinUserViewController.swift; sourceTree = "<group>"; };
 		3A5E872B2BE9EB2E00B9C134 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		3A5E872D2BE9F74800B9C134 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		3A7826832BED3E55000AF096 /* HotelsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelsTableViewCell.swift; sourceTree = "<group>"; };
-		3A7826842BED3E55000AF096 /* HotelsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HotelsTableViewCell.xib; sourceTree = "<group>"; };
 		3A7A92902BE62DB800746041 /* DemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoViewController.swift; sourceTree = "<group>"; };
 		3A7D5C522BEAB07200A462A9 /* ApiCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCaller.swift; sourceTree = "<group>"; };
 		3A7D5C542BEAB14400A462A9 /* HVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HVCViewModel.swift; sourceTree = "<group>"; };
@@ -98,6 +98,8 @@
 			children = (
 				3ABE73E52BE40C1C00400D15 /* RoomControllViewController.swift */,
 				3A0C9B9F2BF71C7000595FD6 /* FanViewController.swift */,
+				3A0800252C0994190016DFD6 /* CoveViewController.swift */,
+				3A4E9C952C19618500E3F363 /* SwitchViewController.swift */,
 			);
 			path = "Room View Controller";
 			sourceTree = "<group>";
@@ -148,8 +150,6 @@
 				3ABE73EA2BE417ED00400D15 /* TabsCollectionViewCell.xib */,
 				3ABE73ED2BE422A500400D15 /* HomeTabCollectionViewCell.swift */,
 				3ABE73EE2BE422A500400D15 /* HomeTabCollectionViewCell.xib */,
-				3A7826832BED3E55000AF096 /* HotelsTableViewCell.swift */,
-				3A7826842BED3E55000AF096 /* HotelsTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -238,8 +238,8 @@
 				3ABE73D12BE4027300400D15 /* Extentions */,
 				3A5E872A2BE9EB1400B9C134 /* Network */,
 				3ABE73DA2BE40AF700400D15 /* Model */,
-				3ABE73DB2BE40B3000400D15 /* Controller */,
 				3ABE73D92BE40AF300400D15 /* Views */,
+				3ABE73DB2BE40B3000400D15 /* Controller */,
 				3A7D5C512BEA9BEF00A462A9 /* ViewModel */,
 				AE50E4832BD7ADDF00A4C95C /* Info.plist */,
 				AEAE87E02BDCE65100749EE4 /* Roboto */,
@@ -315,7 +315,6 @@
 				AEAE87E12BDCE65100749EE4 /* Roboto in Resources */,
 				3ABE73EC2BE417ED00400D15 /* TabsCollectionViewCell.xib in Resources */,
 				3ABE73F02BE422A500400D15 /* HomeTabCollectionViewCell.xib in Resources */,
-				3A7826862BED3E55000AF096 /* HotelsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +331,7 @@
 				3ABE73EB2BE417ED00400D15 /* TabsCollectionViewCell.swift in Sources */,
 				3A7D5C572BEABFED00A462A9 /* Binding.swift in Sources */,
 				3ABE73D32BE402A100400D15 /* Extention.swift in Sources */,
+				3A4E9C962C19618500E3F363 /* SwitchViewController.swift in Sources */,
 				3A0C9BA02BF71C7000595FD6 /* FanViewController.swift in Sources */,
 				AEAE87DD2BDA40DD00749EE4 /* OTPViewController.swift in Sources */,
 				AE50E48A2BD7B08600A4C95C /* LoginViewController.swift in Sources */,
@@ -343,11 +343,11 @@
 				3A4F24462BECE03D005F96F8 /* Endpoints.swift in Sources */,
 				3ABE73E02BE40BB300400D15 /* HomeViewController.swift in Sources */,
 				3A4BDD382BEF740F0098AAB0 /* RemoteViewModel.swift in Sources */,
-				3A7826852BED3E55000AF096 /* HotelsTableViewCell.swift in Sources */,
 				3A7D5C552BEAB14400A462A9 /* HVCViewModel.swift in Sources */,
 				3ABE73E62BE40C1C00400D15 /* RoomControllViewController.swift in Sources */,
 				AE50E4782BD7ADDD00A4C95C /* SceneDelegate.swift in Sources */,
 				3A5E87292BE939E100B9C134 /* JoinUserViewController.swift in Sources */,
+				3A0800262C0994190016DFD6 /* CoveViewController.swift in Sources */,
 				3A7A92912BE62DB800746041 /* DemoViewController.swift in Sources */,
 				3A5E872E2BE9F74800B9C134 /* Model.swift in Sources */,
 				3ABE73EF2BE422A500400D15 /* HomeTabCollectionViewCell.swift in Sources */,

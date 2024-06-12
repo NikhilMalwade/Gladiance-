@@ -7,32 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "245B5C9A-7201-44EA-87B3-75333612991B"
-            shouldBeEnabled = "Yes"
+            uuid = "D22B6D59-60D5-40F0-8294-A089EE2A6A87"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Gladiance/Controller/TabBar Controllers/HomeViewController/HomeViewController.swift"
+            filePath = "Gladiance/ViewModel/RemoteViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
-            landmarkName = "collectionView(_:cellForItemAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "FF7AEEF4-67FD-4CD0-845F-E898771702A4"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Gladiance/Controller/TabBar Controllers/HomeViewController/HomeViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "collectionView(_:numberOfItemsInSection:)"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "nodeConfigApiCall(node:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

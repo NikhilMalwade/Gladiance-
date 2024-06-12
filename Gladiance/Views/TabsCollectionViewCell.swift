@@ -17,7 +17,7 @@ class TabsCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        setShadowToView(shView: shView, mnView: mnView)
+        setShadowToViewOrange(shView: shView, mnView: mnView)
         setRoundCornerToView(mnView: mnView, radius: 5)
         
     }

@@ -12,6 +12,7 @@ enum Event {
     case stopLoading
     case dataLoaded
     case error(Error?)
+    
 }
 enum updated {
 case dataUpdated

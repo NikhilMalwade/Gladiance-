@@ -9,36 +9,26 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    
-    @IBOutlet weak var tabViewCollectionView: UICollectionView!
     @IBOutlet weak var homeCollectionView: UICollectionView!
-    @IBOutlet weak var btnDropDown: UIButton!
+    
     @IBOutlet weak var lblUserName: UILabel!
+    @IBOutlet weak var lblSpaceName: UILabel!
+    @IBOutlet weak var lblProjectName: UILabel!
     
-    var ref = ""
-    
-     var viewmodel = HVCViewModel()
+    var viewmodel = HVCViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.viewmodel.spaceGroupLandingApicall()
+        
+        lblUserName.text = "Hi \(UserName), you're at"
+        lblProjectName.text = ProjectName
         setup()
-        self.viewmodel.spaceGroupLandingApicall(ref: ref)
-        observeEvent()
-        self.homeCollectionView.reloadData()
+        self.navigationController?.interactivePopGestureRecognizer!.delegate = self;
 
     }
-    
-    func setup(){
-        lblUserName.text = "Hello, \(UserName)"
-        
-        self.tabBarController?.navigationItem.hidesBackButton = true
-        tabBarController?.tabBar.isHidden = false
-        
-        self.tabViewCollectionView.register(UINib(nibName: "TabsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TabsCollectionViewCell")
-        self.homeCollectionView.register(UINib(nibName: "HomeTabCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "HomeTabCollectionViewCell")
-        
-    }
-    
+
     func observeEvent() {
         viewmodel.eventHandler = { [weak self] event in
             guard let self else { return }
@@ -50,8 +40,7 @@ class HomeViewController: UIViewController {
             case .dataLoaded:
                 print("Data loaded...")
                 DispatchQueue.main.async {
-                    self.tabViewCollectionView.reloadData()
-                    self.homeCollectionView.reloadData()
+                    self.lblSpaceName.text = "\(SpaceName),"
                 }
             case .error(let error):
                 print(error!)
@@ -61,58 +50,44 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+   
+    func setup(){
+        observeEvent()
         
-        if collectionView == tabViewCollectionView{
-            print(viewmodel.SpaceGroupArr.count)
-            return viewmodel.SpaceGroupArr.count
-        }else{
-            return 0
-        }
+//        self.tabBarController?.navigationItem.hidesBackButton = true
+        tabBarController?.tabBar.isHidden = false
+        
+        self.homeCollectionView.register(UINib(nibName: "HomeTabCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "HomeTabCollectionViewCell")
+    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 0
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == tabViewCollectionView
-        {
-            let cell = tabViewCollectionView.dequeueReusableCell(withReuseIdentifier: "TabsCollectionViewCell", for: indexPath) as! TabsCollectionViewCell
-            let dic = viewmodel.SpaceGroupArr[indexPath.row]
-            cell.lblTabName.text = dic.gAAProjectSpaceName!
-            return cell
-        }
-        else
-        {
-            let cell = homeCollectionView.dequeueReusableCell(withReuseIdentifier: "HomeTabCollectionViewCell", for: indexPath) as! HomeTabCollectionViewCell
-
-            return cell
-        }
+        
+        let cell = homeCollectionView.dequeueReusableCell(withReuseIdentifier: "HomeTabCollectionViewCell", for: indexPath) as! HomeTabCollectionViewCell
+        
+        return cell
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == tabViewCollectionView
-        {
-            var dic = viewmodel.SpaceGroupArr[indexPath.row]
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "RoomControllViewController") as! RoomControllViewController
-            RefId1 = "\(dic.gAAProjectSpaceRef!)"
-            tabBarController?.selectedIndex = 1
-            self.navigationController?.pushViewController(vc, animated:  true)
-        }
-        else{
-            
-        }
+        
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == homeCollectionView  {
-            
-                
-                let screenWidth = homeCollectionView.bounds.width - 15
-                let scaleFactor = (screenWidth / 2)
-                
-                return CGSize(width: scaleFactor, height: scaleFactor)
-        }
-        return CGSize(width: tabViewCollectionView.frame.width, height: tabViewCollectionView.frame.height)
+    //func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    //    //        if collectionView == homeCollectionView  {
+    //    //
+    //    //
+    //    //                let screenWidth = homeCollectionView.bounds.width - 15
+    //    //                let scaleFactor = (screenWidth / 2)
+    //    //
+    //    //                return CGSize(width: scaleFactor, height: scaleFactor)
+    //    //        }
+    //    //        /*return CGSize(width: tabViewCollectionView.frame.width, height: */tabViewCollectionView.frame.height)
+    //
+    //}
     
-    }
     
 }

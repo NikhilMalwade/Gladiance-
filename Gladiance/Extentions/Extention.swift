@@ -14,11 +14,19 @@ let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 var DeviceID = ""
 var LoginToken = ""
 var UserName = ""
-var RefId = ""
-var RefId1 = ""
+
+var ProjectRef = ""
+var ProjectSpaceGroupRef = ""
+var ProjectSpaceRef = ""
+var ProjectSpaceTypeAreaRef = ""
+var NodeId = ""
+
+var SpaceName = ""
+var ProjectName = ""
 
 let Dark_BACKGROUND_COLOR = hexStringToUIColor(hex: "#465A65") // Dark Gray
 let Orange_Background_color = hexStringToUIColor(hex: "FE8E51")
+let GreyColour = UIColor(hexString: "ffffff").withAlphaComponent(0.9)
 // To set Color in hexa color code
 
 func hexStringToUIColor(hex:String) -> UIColor {
@@ -43,14 +51,14 @@ func hexStringToUIColor(hex:String) -> UIColor {
     )
 }
 extension UIViewController { //: NVActivityIndicatorViewable
-    //
-    //   public func setLoading() {
-    //        startAnimating(CGSize(width: 70 , height: 70), message: "", type: NVActivityIndicatorType.ballSpinFadeLoader, color: Dark_BACKGROUND_COLOR, backgroundColor: UIColor.clear, textColor: .black)
-    //    }
-    //
-    //    public func hideLoading() {
-    //        stopAnimating()
-    //    }
+
+//       public func startAnimating() {
+//            startAnimating(CGSize(width: 70 , height: 70), message: "Loading", type: NVActivityIndicatorType.lineSpinFadeLoader, color: Dark_BACKGROUND_COLOR, backgroundColor: UIColor.clear, textColor: Dark_BACKGROUND_COLOR)
+//        }
+//    
+//        public func stopAnimating() {
+//            stopAnimating()
+//        }
     
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
@@ -130,7 +138,12 @@ extension Double {
         return (self * divisor).rounded() / divisor
     }
 }
-extension UIViewController{
+extension UIViewController:UIGestureRecognizerDelegate{
+    
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+            return true
+        
+    }
     
     class CircularProgressView: UIView {
         
@@ -162,7 +175,7 @@ extension UIViewController{
                 if pathMoved < 0{
                     pathMoved = 0 - pathMoved
                 }
-                
+            
                 setProgress(duration: timeToFill * Double(pathMoved), to: Float(progress))
             }
         }
@@ -274,7 +287,6 @@ extension NSMutableAttributedString {
         let range: NSRange = self.mutableString.range(of: textToFind, options: .caseInsensitive)
         self.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
     }
-    
 }
 
 extension UIColor {
@@ -315,7 +327,7 @@ extension UITableViewCell {
 }
 
 extension UICollectionViewCell {
-    func setShadowToView(shView: UIView, mnView: UIView) {
+    func setShadowToViewOrange(shView: UIView, mnView: UIView) {
         //FE8E51
         //        shView.layer.shadowColor = UIColor.lightGray.cgColor
         
@@ -324,6 +336,22 @@ extension UICollectionViewCell {
         shView.layer.shadowOpacity = 1.0
         shView.layer.shadowOffset = CGSize.zero
         shView.layer.shadowRadius = 6
+        shView.backgroundColor = UIColor.clear
+        shView.layer.cornerRadius = 5.0
+        //        shView.clipsToBounds = true
+        
+        mnView.layer.cornerRadius = 5.0
+        mnView.clipsToBounds = true
+    }
+    func setShadowToView(shView: UIView, mnView: UIView) {
+        //FE8E51
+        shView.layer.shadowColor = UIColor.white.cgColor
+        
+//        shView.layer.shadowColor = UIColor(hexString: "#FE8E51").cgColor
+        
+        shView.layer.shadowOpacity = 1.0
+        shView.layer.shadowOffset = CGSize.zero
+        shView.layer.shadowRadius = 10
         shView.backgroundColor = UIColor.clear
         shView.layer.cornerRadius = 5.0
         //        shView.clipsToBounds = true
