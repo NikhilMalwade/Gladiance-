@@ -590,3 +590,138 @@ struct Params : Decodable {
 
 }
 
+
+struct SceneListModel : Decodable {
+    let successful : Bool?
+    let message : String?
+    let tag : String?
+    let tagType : String?
+    let processToken : String?
+    let objectTag : [ObjectTag]?
+
+    enum CodingKeys: String, CodingKey {
+
+        case successful = "Successful"
+        case message = "Message"
+        case tag = "Tag"
+        case tagType = "TagType"
+        case processToken = "ProcessToken"
+        case objectTag = "ObjectTag"
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        successful = try values.decodeIfPresent(Bool.self, forKey: .successful)
+        message = try values.decodeIfPresent(String.self, forKey: .message)
+        tag = try values.decodeIfPresent(String.self, forKey: .tag)
+        tagType = try values.decodeIfPresent(String.self, forKey: .tagType)
+        processToken = try values.decodeIfPresent(String.self, forKey: .processToken)
+        objectTag = try values.decodeIfPresent([ObjectTag].self, forKey: .objectTag)
+    }
+
+}
+
+struct ObjectTag : Decodable {
+    let ref : Int?
+    let name : String?
+    let gAAProjectRef : Int?
+    let code : String?
+    let isSystemDefinedScene : Int?
+    let gAAProjectSpaceTypeRef : Int?
+    let gAAProjectSpaceTypeName : String?
+    let gAAProjectName : String?
+    let configurations : [Configurations]?
+
+    enum CodingKeys: String, CodingKey {
+
+        case ref = "Ref"
+        case name = "Name"
+        case gAAProjectRef = "GAAProjectRef"
+        case code = "Code"
+        case isSystemDefinedScene = "IsSystemDefinedScene"
+        case gAAProjectSpaceTypeRef = "GAAProjectSpaceTypeRef"
+        case gAAProjectSpaceTypeName = "GAAProjectSpaceTypeName"
+        case gAAProjectName = "GAAProjectName"
+        case configurations = "Configurations"
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        ref = try values.decodeIfPresent(Int.self, forKey: .ref)
+        name = try values.decodeIfPresent(String.self, forKey: .name)
+        gAAProjectRef = try values.decodeIfPresent(Int.self, forKey: .gAAProjectRef)
+        code = try values.decodeIfPresent(String.self, forKey: .code)
+        isSystemDefinedScene = try values.decodeIfPresent(Int.self, forKey: .isSystemDefinedScene)
+        gAAProjectSpaceTypeRef = try values.decodeIfPresent(Int.self, forKey: .gAAProjectSpaceTypeRef)
+        gAAProjectSpaceTypeName = try values.decodeIfPresent(String.self, forKey: .gAAProjectSpaceTypeName)
+        gAAProjectName = try values.decodeIfPresent(String.self, forKey: .gAAProjectName)
+        configurations = try values.decodeIfPresent([Configurations].self, forKey: .configurations)
+    }
+
+}
+
+struct Configurations : Decodable {
+    let gAAProjectSceneRef : Int?
+    let gAAProjectSpaceTypePlannedDeviceConnectionRef : Int?
+    let nodeConfigParamName : String?
+    let value : String?
+    let nodeConfigDeviceName : String?
+    let gAAProjectSceneName : String?
+    let gAAProjectSceneCode : String?
+    let gAAProjectSpaceTypeRef : Int?
+    let gAAProjectSpaceTypeName : String?
+    let gAAProjectSpaceTypeAreaRef : Int?
+    let gAAProjectSpaceTypeAreaName : String?
+    let gAAProjectSpaceTypePlannedDeviceRef : Int?
+    let gAAProjectSpaceTypePlannedDeviceName : String?
+    let label : String?
+    let outputDriverChannelRef : Int?
+    let outputDriverChannelName : String?
+    let gAAProjectRef : Int?
+    let gAAProjectName : String?
+
+    enum CodingKeys: String, CodingKey {
+
+        case gAAProjectSceneRef = "GAAProjectSceneRef"
+        case gAAProjectSpaceTypePlannedDeviceConnectionRef = "GAAProjectSpaceTypePlannedDeviceConnectionRef"
+        case nodeConfigParamName = "NodeConfigParamName"
+        case value = "Value"
+        case nodeConfigDeviceName = "NodeConfigDeviceName"
+        case gAAProjectSceneName = "GAAProjectSceneName"
+        case gAAProjectSceneCode = "GAAProjectSceneCode"
+        case gAAProjectSpaceTypeRef = "GAAProjectSpaceTypeRef"
+        case gAAProjectSpaceTypeName = "GAAProjectSpaceTypeName"
+        case gAAProjectSpaceTypeAreaRef = "GAAProjectSpaceTypeAreaRef"
+        case gAAProjectSpaceTypeAreaName = "GAAProjectSpaceTypeAreaName"
+        case gAAProjectSpaceTypePlannedDeviceRef = "GAAProjectSpaceTypePlannedDeviceRef"
+        case gAAProjectSpaceTypePlannedDeviceName = "GAAProjectSpaceTypePlannedDeviceName"
+        case label = "Label"
+        case outputDriverChannelRef = "OutputDriverChannelRef"
+        case outputDriverChannelName = "OutputDriverChannelName"
+        case gAAProjectRef = "GAAProjectRef"
+        case gAAProjectName = "GAAProjectName"
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        gAAProjectSceneRef = try values.decodeIfPresent(Int.self, forKey: .gAAProjectSceneRef)
+        gAAProjectSpaceTypePlannedDeviceConnectionRef = try values.decodeIfPresent(Int.self, forKey: .gAAProjectSpaceTypePlannedDeviceConnectionRef)
+        nodeConfigParamName = try values.decodeIfPresent(String.self, forKey: .nodeConfigParamName)
+        value = try values.decodeIfPresent(String.self, forKey: .value)
+        nodeConfigDeviceName = try values.decodeIfPresent(String.self, forKey: .nodeConfigDeviceName)
+        gAAProjectSceneName = try values.decodeIfPresent(String.self, forKey: .gAAProjectSceneName)
+        gAAProjectSceneCode = try values.decodeIfPresent(String.self, forKey: .gAAProjectSceneCode)
+        gAAProjectSpaceTypeRef = try values.decodeIfPresent(Int.self, forKey: .gAAProjectSpaceTypeRef)
+        gAAProjectSpaceTypeName = try values.decodeIfPresent(String.self, forKey: .gAAProjectSpaceTypeName)
+        gAAProjectSpaceTypeAreaRef = try values.decodeIfPresent(Int.self, forKey: .gAAProjectSpaceTypeAreaRef)
+        gAAProjectSpaceTypeAreaName = try values.decodeIfPresent(String.self, forKey: .gAAProjectSpaceTypeAreaName)
+        gAAProjectSpaceTypePlannedDeviceRef = try values.decodeIfPresent(Int.self, forKey: .gAAProjectSpaceTypePlannedDeviceRef)
+        gAAProjectSpaceTypePlannedDeviceName = try values.decodeIfPresent(String.self, forKey: .gAAProjectSpaceTypePlannedDeviceName)
+        label = try values.decodeIfPresent(String.self, forKey: .label)
+        outputDriverChannelRef = try values.decodeIfPresent(Int.self, forKey: .outputDriverChannelRef)
+        outputDriverChannelName = try values.decodeIfPresent(String.self, forKey: .outputDriverChannelName)
+        gAAProjectRef = try values.decodeIfPresent(Int.self, forKey: .gAAProjectRef)
+        gAAProjectName = try values.decodeIfPresent(String.self, forKey: .gAAProjectName)
+    }
+
+}

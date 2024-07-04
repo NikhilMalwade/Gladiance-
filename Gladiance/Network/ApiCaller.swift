@@ -184,5 +184,49 @@ class ApiCaller: UIViewController {
             }
         }.resume()
     }
+    
+    //MARK: Scene list Api
+    
+    func sceneListApi(completion: @escaping (Result<SceneListModel, Error>) -> () ){
+
+        print(gAAProjectSpaceTypeAreaRef)
+        guard let url = URL(string: baseURL.rawValue + Endpoints.scenelist.rawValue + "/" + gAAProjectSpaceTypeAreaRef + "/" + LoginToken + "/" + DeviceID ) else {
+            return
+        }
+        print(url)
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data else {return}
+            
+            do {
+                let response = try JSONDecoder().decode(SceneListModel.self, from: data)
+
+                completion(.success(response))
+            }catch{
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+    
+    func sceneApi(completion: @escaping (Result<SceneListModel, Error>) -> () ){
+
+        print(gAAProjectSpaceTypeAreaRef)
+        guard let url = URL(string: baseURL.rawValue + Endpoints.scene.rawValue + "/" + GAAProjectSceneRef + "/" + LoginToken + "/" + DeviceID ) else {
+            return
+        }
+        print(url)
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data else {return}
+            
+            do {
+                let response = try JSONDecoder().decode(SceneListModel.self, from: data)
+
+                completion(.success(response))
+            }catch{
+                completion(.failure(error))
+            }
+        }.resume()
+    }
 }
 

@@ -25,10 +25,14 @@ class HomeViewController: UIViewController {
         lblUserName.text = "Hi \(UserName), you're at"
         lblProjectName.text = ProjectName
         setup()
+        getSpaceLandingData()
         self.navigationController?.interactivePopGestureRecognizer!.delegate = self;
 
     }
-
+    func getSpaceLandingData(){
+        self.viewmodel.spaceLandingApicall()
+      
+    }
     func observeEvent() {
         viewmodel.eventHandler = { [weak self] event in
             guard let self else { return }

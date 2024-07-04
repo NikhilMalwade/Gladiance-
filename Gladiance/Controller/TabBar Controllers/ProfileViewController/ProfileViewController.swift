@@ -44,6 +44,10 @@ class ProfileViewController: UIViewController {
             print("Create Project clicked")
         case 2:
             print("Automation clicked")
+            
+            let vc = storyboard?.instantiateViewController(identifier: "MainMoodViewController") as! MainMoodViewController
+            navigationController?.pushViewController(vc, animated: true)
+            
         case 3:
             print("Add Device clicked")
         case 4:

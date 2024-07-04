@@ -13,10 +13,16 @@ class SwitchViewController: UIViewController {
     @IBOutlet weak var homeCollectionView: UICollectionView!
 
     var selected = false
+    
+    var gAAProjectSpaceTypePlannedDeviceName = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         self.homeCollectionView.register(UINib(nibName: "HomeTabCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "HomeTabCollectionViewCell")
+        self.navigationController?.isNavigationBarHidden = false
+
+        
         // Do any additional setup after loading the view.
+        
     }
    
 
@@ -29,6 +35,7 @@ extension SwitchViewController: UICollectionViewDelegate,UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = homeCollectionView.dequeueReusableCell(withReuseIdentifier: "HomeTabCollectionViewCell", for: indexPath) as! HomeTabCollectionViewCell
         cell.shView.backgroundColor = GreyColour
+        cell.lblTabName.text = gAAProjectSpaceTypePlannedDeviceName
         if selected {
             cell.shView.backgroundColor = .orange
         }

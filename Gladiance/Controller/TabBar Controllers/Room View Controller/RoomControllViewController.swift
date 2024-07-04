@@ -20,6 +20,7 @@ class RoomControllViewController: UIViewController {
     var viewmodel = HVCViewModel()
     var viewmodel1 = RemoteViewModel()
     var nodeID = ""
+    var SwitchName = ""
     var Switch = Bool()
     var SwitchCount = Int()
     
@@ -30,7 +31,7 @@ class RoomControllViewController: UIViewController {
         Switch = false
         getSpaceLandingData()
         self.navigationController?.interactivePopGestureRecognizer!.delegate = self;
-
+        self.navigationController?.isNavigationBarHidden = true
         setRoundCornerToView(mnView: shview, radius: 15)
         
         RegisterCell()
@@ -105,9 +106,9 @@ class RoomControllViewController: UIViewController {
                         }
                     } else if dic.type == "esp.device.switch"{
                         DispatchQueue.main.async {
-//                            self.Switch = true
-//                            self.SwitchCount = 1
+
                             let vc = self.storyboard!.instantiateViewController(withIdentifier: "SwitchViewController") as! SwitchViewController
+                            vc.gAAProjectSpaceTypePlannedDeviceName = self.SwitchName
                             self.navigationController?.pushViewController(vc, animated:  true)
                         }
                     }
@@ -215,7 +216,9 @@ extension RoomControllViewController: UICollectionViewDelegate,UICollectionViewD
         else if collectionView == homeCollectionView{
             
             let dic = viewmodel1.controlArr[indexPath.row]
-            print(dic.nodeId)
+            print(dic.nodeId!)
+            print(dic.gAAProjectSpaceTypePlannedDeviceName!)
+            SwitchName = dic.gAAProjectSpaceTypePlannedDeviceName!
             if Switch{
 //                Switch = false
 

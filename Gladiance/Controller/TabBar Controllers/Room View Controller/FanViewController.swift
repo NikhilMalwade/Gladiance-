@@ -22,7 +22,7 @@ class FanViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         SetupView()
-        self.navigationController?.interactivePopGestureRecognizer!.delegate = self;
+        self.navigationController?.isNavigationBarHidden = false
 
     }
     

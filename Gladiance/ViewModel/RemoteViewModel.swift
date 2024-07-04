@@ -9,7 +9,7 @@ import Foundation
 
 
 
-class RemoteViewModel{
+final class RemoteViewModel{
     
     static let shared:RemoteViewModel = RemoteViewModel()
    

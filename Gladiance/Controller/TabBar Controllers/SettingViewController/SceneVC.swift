@@ -9,21 +9,76 @@ import UIKit
 
 class SceneVC: UIViewController {
 
+    let viewModel = SettingsViewModel()
+
+    @IBOutlet weak var lblProjectType : UILabel!
+    @IBOutlet weak var lblProjectName : UILabel!
+    @IBOutlet weak var lblMoodName : UILabel!
+    @IBOutlet weak var MoodCollectionView: UICollectionView!
+
+    var projectName = ""
+    var type = ""
+    var Arrdata = [Configurations]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.viewModel.sceneListApicall()
+        collectionViewSetup ()
+        MoodCollectionView.reloadData()
+//        lblProjectType.text = dic.first
 
         // Do any additional setup after loading the view.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func observeEvent() {
+        viewModel.eventHandler = { [weak self] event in
+            guard let self else { return }
+            switch event {
+            case .loading:
+                print("Product loading....")
+            case .stopLoading:
+                print("Stop loading...")
+            case .dataLoaded:
+                print("Data loaded...")
+                DispatchQueue.main.async {
+                    self.MoodCollectionView.reloadData()
+                }
+            case .error(let error):
+                print(error!)
+            }
+        }
     }
-    */
 
+
+}
+extension SceneVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+    
+    func collectionViewSetup (){
+        MoodCollectionView.register(UINib(nibName: "EditableCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "EditableCollectionViewCell")
+        observeEvent()
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print(viewModel.ConfigurationsDic.count)
+//        return viewModel.ConfigurationsDic.count
+        print(Arrdata.count)
+        return Arrdata.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = MoodCollectionView.dequeueReusableCell(withReuseIdentifier: "EditableCollectionViewCell", for: indexPath) as! EditableCollectionViewCell
+        
+        let dic = viewModel.ConfigurationsDic[indexPath.row]
+        
+        cell.lblTabName.text = dic.gAAProjectSpaceTypePlannedDeviceName!
+//        GAAProjectSpaceTypePlannedDeviceName!
+        
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            
+        let screenWidth = MoodCollectionView.bounds.width - 15
+        let scaleFactor = (screenWidth / 2)
+        
+        return CGSize(width: scaleFactor, height: scaleFactor)
+    }
 }

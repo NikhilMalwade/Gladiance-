@@ -98,18 +98,23 @@ final class HVCViewModel: UIViewController{
 
                     self.SpaceGroupDataModel = self.SpaceGroupLandingDic.data
                     var arr = []
+                    var arr1 = []
                     var spacerefArr = []
                     self.SpaceGroupArr.removeAll()
                     
                     for i in self.SpaceGroupDataModel.spaces ?? []{
                         SpaceGroupArr.append(i)
                         arr.append(i.gAAProjectSpaceName!)
+                        arr1.append(i.gAAProjectSpaceTypeRef!)
                         spacerefArr.append(i.gAAProjectSpaceRef!)
                     }
                     print(SpaceGroupArr)
 
                     let Id = (spacerefArr[0]) as! Int
+                    let typeRef = arr1[0] as! Int
                     ProjectSpaceRef = "\(Id)"
+                    gAAProjectSpaceTypeAreaRef = "\(typeRef)"
+
                     SpaceName = arr[0] as! String
 //                    self.eventHandler1?(.dataUpdated)
 
@@ -148,6 +153,7 @@ final class HVCViewModel: UIViewController{
                     }
                     let Id = (arr[0]) as! Int
                     ProjectSpaceTypeAreaRef = "\(Id)"
+                    print(ProjectSpaceTypeAreaRef)
                     print("----------------------\(arr[0])")
                     self.eventHandler?(.dataLoaded)
                 }

@@ -17,8 +17,7 @@ class CoveViewController: UIViewController {
     var switchOn = Bool()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.hidesBackButton = false        
-        self.navigationController?.interactivePopGestureRecognizer!.delegate = self;
+        self.navigationController?.isNavigationBarHidden = false
 
     }
     

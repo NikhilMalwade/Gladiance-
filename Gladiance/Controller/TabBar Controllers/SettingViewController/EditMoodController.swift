@@ -6,3 +6,16 @@
 //
 
 import Foundation
+import UIKit
+
+class EditMoodController:UIViewController{
+    
+    @IBOutlet weak var editMoodCollectionView: UICollectionView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        editMoodCollectionView.register(UINib(nibName: "CheckmarkCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CheckmarkCollectionViewCell")
+        
+    }
+}

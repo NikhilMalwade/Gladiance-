@@ -19,6 +19,8 @@ var ProjectRef = ""
 var ProjectSpaceGroupRef = ""
 var ProjectSpaceRef = ""
 var ProjectSpaceTypeAreaRef = ""
+var gAAProjectSpaceTypeAreaRef = ""
+var GAAProjectSceneRef = ""
 var NodeId = ""
 
 var SpaceName = ""
@@ -50,6 +52,85 @@ func hexStringToUIColor(hex:String) -> UIColor {
         alpha: CGFloat(1.0)
     )
 }
+extension UIView {
+
+    @IBInspectable
+    var cornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            layer.cornerRadius = newValue
+        }
+    }
+
+    @IBInspectable
+    var borderWidth: CGFloat {
+        get {
+            return layer.borderWidth
+        }
+        set {
+            layer.borderWidth = newValue
+        }
+    }
+
+    @IBInspectable
+    var borderColor: UIColor? {
+        get {
+            let color = UIColor.init(cgColor: layer.borderColor!)
+            return color
+        }
+        set {
+            layer.borderColor = newValue?.cgColor
+        }
+    }
+
+    @IBInspectable
+    var shadowRadius: CGFloat {
+        get {
+            return layer.shadowRadius
+        }
+        set {
+
+            layer.shadowRadius = shadowRadius
+        }
+    }
+    @IBInspectable
+    var shadowOffset : CGSize{
+
+        get{
+            return layer.shadowOffset
+        }set{
+
+            layer.shadowOffset = newValue
+        }
+    }
+
+    @IBInspectable
+    var shadowColor : UIColor{
+        get{
+            return UIColor.init(cgColor: layer.shadowColor!)
+        }
+        set {
+            layer.shadowColor = newValue.cgColor
+        }
+    }
+    @IBInspectable
+    var shadowOpacity : Float {
+
+        get{
+            return layer.shadowOpacity
+        }
+        set {
+
+            layer.shadowOpacity = newValue
+
+        }
+    }
+    
+   
+
+}
 extension UIViewController { //: NVActivityIndicatorViewable
 
 //       public func startAnimating() {
@@ -59,6 +140,7 @@ extension UIViewController { //: NVActivityIndicatorViewable
 //        public func stopAnimating() {
 //            stopAnimating()
 //        }
+   
     
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
@@ -384,5 +466,45 @@ extension UITableView {
             let indexPath = IndexPath(row: 0, section: 0)
             self.scrollToRow(at: indexPath, at: .top, animated: false)
         }
+    }
+}
+
+@IBDesignable
+class Checkbox: UIButton {
+
+    // Images
+    let checkedImage = UIImage(systemName: "checkedImg") // Checked image
+    let uncheckedImage = UIImage(systemName: "uncheckedImg") // Unchecked image
+
+    // Bool property
+    @IBInspectable var isChecked: Bool = false {
+        didSet {
+            updateImage()
+        }
+    }
+
+    // Initialization
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupCheckbox()
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupCheckbox()
+    }
+
+    func setupCheckbox() {
+        addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
+        updateImage()
+    }
+
+    @objc func buttonClicked() {
+        isChecked.toggle()
+    }
+
+    func updateImage() {
+        let image = isChecked ? checkedImage : uncheckedImage
+        setImage(image, for: .normal)
     }
 }

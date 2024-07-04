@@ -13,10 +13,10 @@ class daysOfWeekCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-                contentView.layer.cornerRadius = 10
-                contentView.layer.borderWidth = 2
-                contentView.layer.borderColor = UIColor.white.cgColor
-                contentView.layer.masksToBounds = true
+//                contentView.layer.cornerRadius = 10
+//                contentView.layer.borderWidth = 2
+//                contentView.layer.borderColor = UIColor.white.cgColor
+//                contentView.layer.masksToBounds = true
         
         // Default state
                 contentView.backgroundColor = .clear
