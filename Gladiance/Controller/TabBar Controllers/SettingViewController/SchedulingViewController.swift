@@ -147,7 +147,6 @@ extension SchedulingViewController: UICollectionViewDelegate,UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
  
-        
         if collectionView == daysOfWeekCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "daysOfWeekCollectionViewCell", for: indexPath) as! daysOfWeekCollectionViewCell
             
@@ -172,24 +171,30 @@ extension SchedulingViewController: UICollectionViewDelegate,UICollectionViewDat
         }
     }
     
-    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return 5
+//    }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == daysOfWeekCollectionView  {
             
             let noOfCellsInRow = 4   //number of column you want
-                let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
-                let totalSpace = flowLayout.sectionInset.left
-                    + flowLayout.sectionInset.right
-                    + (flowLayout.minimumInteritemSpacing * CGFloat(noOfCellsInRow - 1))
-
-                let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(noOfCellsInRow))
-                return CGSize(width: size, height: size)
+            let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+            let totalSpace = flowLayout.sectionInset.left
+            + flowLayout.sectionInset.right
+            + (flowLayout.minimumInteritemSpacing * CGFloat(noOfCellsInRow - 1))
             
+            let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(noOfCellsInRow))
+            return CGSize(width: size, height: size)
             
-//            let screenWidth = daysOfWeekCollectionView.bounds.width - 15
-//            let scaleFactor = (screenWidth / 2)
-//            
-//            return CGSize(width: scaleFactor, height: scaleFactor)
+        }else if collectionView == monthOfYearCollectionView{
+            let noOfCellsInRow = 6   //number of column you want
+            let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+            let totalSpace = flowLayout.sectionInset.left
+            + flowLayout.sectionInset.right
+            + (flowLayout.minimumInteritemSpacing * CGFloat(noOfCellsInRow - 1))
+            
+            let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(noOfCellsInRow))
+            return CGSize(width: size, height: size)
         }else if collectionView == DevicesCollectionView{
             let screenWidth = DevicesCollectionView.bounds.width - 15
             let scaleFactor = (screenWidth / 2)

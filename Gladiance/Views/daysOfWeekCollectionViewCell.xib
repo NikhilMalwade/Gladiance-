@@ -22,13 +22,10 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="auU-VQ-wJ1">
-                        <rect key="frame" x="5" y="5" width="189" height="40"/>
+                        <rect key="frame" x="5" y="5" width="189" height="30"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9P-Ju-M1G">
-                                <rect key="frame" x="20" y="5" width="149" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="a7c-i5-Yny"/>
-                                </constraints>
+                                <rect key="frame" x="80" y="8" width="29" height="14.333333333333336"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -36,11 +33,9 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="B9P-Ju-M1G" firstAttribute="centerY" secondItem="auU-VQ-wJ1" secondAttribute="centerY" id="CYh-2R-QES"/>
-                            <constraint firstItem="B9P-Ju-M1G" firstAttribute="centerX" secondItem="auU-VQ-wJ1" secondAttribute="centerX" id="OtL-rA-KZd"/>
-                            <constraint firstItem="B9P-Ju-M1G" firstAttribute="top" secondItem="auU-VQ-wJ1" secondAttribute="top" constant="5" id="W0a-PA-Yke"/>
-                            <constraint firstItem="B9P-Ju-M1G" firstAttribute="top" secondItem="auU-VQ-wJ1" secondAttribute="top" constant="5" id="fF7-X5-6b0"/>
-                            <constraint firstItem="B9P-Ju-M1G" firstAttribute="leading" secondItem="auU-VQ-wJ1" secondAttribute="leading" constant="20" id="qxq-fV-Vdo"/>
+                            <constraint firstItem="B9P-Ju-M1G" firstAttribute="centerX" secondItem="auU-VQ-wJ1" secondAttribute="centerX" id="58A-Vt-e6P"/>
+                            <constraint firstAttribute="height" constant="30" id="Ht5-Yq-lNu"/>
+                            <constraint firstItem="B9P-Ju-M1G" firstAttribute="centerY" secondItem="auU-VQ-wJ1" secondAttribute="centerY" id="tqw-JB-zdh"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -58,18 +53,15 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="auU-VQ-wJ1" secondAttribute="trailing" constant="5" id="Chv-1X-azg"/>
-                <constraint firstAttribute="trailing" secondItem="auU-VQ-wJ1" secondAttribute="trailing" constant="5" id="DWu-0h-JQI"/>
-                <constraint firstAttribute="bottom" secondItem="auU-VQ-wJ1" secondAttribute="bottom" constant="5" id="LEB-er-FQ6"/>
-                <constraint firstItem="auU-VQ-wJ1" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="f04-yI-7Qq"/>
-                <constraint firstAttribute="bottom" secondItem="auU-VQ-wJ1" secondAttribute="bottom" constant="5" id="fm7-a7-oxa"/>
-                <constraint firstItem="auU-VQ-wJ1" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="g66-yP-Pfa"/>
-                <constraint firstItem="auU-VQ-wJ1" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="oKP-dD-ech"/>
-                <constraint firstItem="auU-VQ-wJ1" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="ocS-wf-uRy"/>
+                <constraint firstItem="auU-VQ-wJ1" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="JZz-Cv-YCh"/>
+                <constraint firstAttribute="bottom" secondItem="auU-VQ-wJ1" secondAttribute="bottom" constant="5" id="Xdn-gT-Ka2"/>
+                <constraint firstItem="auU-VQ-wJ1" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="dEw-mg-d88"/>
+                <constraint firstAttribute="trailing" secondItem="auU-VQ-wJ1" secondAttribute="trailing" constant="5" id="sWg-FD-bzy"/>
             </constraints>
             <size key="customSize" width="199" height="50"/>
             <connections>
                 <outlet property="dayslbl" destination="B9P-Ju-M1G" id="abe-Rb-xcU"/>
+                <outlet property="shView" destination="auU-VQ-wJ1" id="tgU-Fv-p3y"/>
             </connections>
             <point key="canvasLocation" x="115.26717557251908" y="30.281690140845072"/>
         </collectionViewCell>

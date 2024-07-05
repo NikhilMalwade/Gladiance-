@@ -10,13 +10,9 @@ import UIKit
 class daysOfWeekCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var dayslbl: UILabel!
+    @IBOutlet weak var shView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-//                contentView.layer.cornerRadius = 10
-//                contentView.layer.borderWidth = 2
-//                contentView.layer.borderColor = UIColor.white.cgColor
-//                contentView.layer.masksToBounds = true
         
                 contentView.backgroundColor = .clear
                 dayslbl.textColor = .white
@@ -25,10 +21,10 @@ class daysOfWeekCollectionViewCell: UICollectionViewCell {
     override var isSelected: Bool {
             didSet {
                 if isSelected {
-                    contentView.backgroundColor = .white
+                    shView.backgroundColor = .white
                     dayslbl.textColor = .black
                 } else {
-                    contentView.backgroundColor = .clear
+                    shView.backgroundColor = .clear
                     dayslbl.textColor = .white
                 }
             }
