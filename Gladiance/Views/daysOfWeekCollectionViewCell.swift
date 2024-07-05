@@ -18,7 +18,6 @@ class daysOfWeekCollectionViewCell: UICollectionViewCell {
 //                contentView.layer.borderColor = UIColor.white.cgColor
 //                contentView.layer.masksToBounds = true
         
-        // Default state
                 contentView.backgroundColor = .clear
                 dayslbl.textColor = .white
     }
