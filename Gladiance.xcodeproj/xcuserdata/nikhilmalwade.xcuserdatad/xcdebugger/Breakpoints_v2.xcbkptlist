@@ -30,8 +30,8 @@
             filePath = "Gladiance/Controller/TabBar Controllers/SettingViewController/SchedulingViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "334"
-            endingLineNumber = "334"
+            startingLineNumber = "264"
+            endingLineNumber = "264"
             landmarkName = "SchedulingViewController"
             landmarkType = "21">
          </BreakpointContent>
@@ -46,8 +46,8 @@
             filePath = "Gladiance/Controller/TabBar Controllers/SettingViewController/SchedulingViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "332"
-            endingLineNumber = "332"
+            startingLineNumber = "262"
+            endingLineNumber = "262"
             landmarkName = "SchedulingViewController"
             landmarkType = "21">
          </BreakpointContent>
@@ -62,8 +62,8 @@
             filePath = "Gladiance/Controller/TabBar Controllers/SettingViewController/SchedulingViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "327"
-            endingLineNumber = "327"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
             landmarkName = "SchedulingViewController"
             landmarkType = "21">
          </BreakpointContent>
@@ -71,48 +71,48 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "215184A0-2C08-4796-B609-E18E7E7C5D7A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Gladiance/ViewModel/HVCViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
-            landmarkName = "spaceLandingApicall()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C4082500-22B1-4183-B18E-7494C6785406"
+            uuid = "EEEA869E-18BC-4DFF-BF0C-F426BA4D0E71"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Gladiance/Network/ApiCaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
-            landmarkName = "sceneListApi(completion:)"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
+            landmarkName = "sceneApi(completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "46AB72B6-51A3-4CDA-B2AF-97DF0AF76DB0"
+            uuid = "DDCDE0DB-EFEC-4ACA-8F9C-AFBC6F76935F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Gladiance/Controller/TabBar Controllers/SettingViewController/MainMoodViewController.swift"
+            filePath = "Gladiance/Controller/TabBar Controllers/SettingViewController/SchedulingViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "collectionView(_:didSelectItemAt:)"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "fetchData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1902306D-2DE6-4A48-86FE-0255941BFF8E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Gladiance/Controller/TabBar Controllers/SettingViewController/SchedulingViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "observeEvent()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

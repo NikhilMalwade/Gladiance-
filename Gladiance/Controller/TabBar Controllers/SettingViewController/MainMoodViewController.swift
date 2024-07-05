@@ -61,9 +61,12 @@ extension MainMoodViewController:UICollectionViewDelegate,UICollectionViewDataSo
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let dic = viewModel.ObjectTagDic[indexPath.row]
+        let dic1 = dic.configurations![indexPath.row]
         print(dic.name!)
         print(dic.gAAProjectName!)
         
+        GAAProjectSceneRef = "\(dic1.gAAProjectSceneRef!)"
+        gAAProjectSpaceTypeAreaRef = "\(dic.gAAProjectSpaceTypeRef!)"
         let vc = storyboard?.instantiateViewController(identifier: "SceneVC") as! SceneVC
         viewModel.ConfigurationsDic = viewModel.ObjectTagDic[indexPath.row].configurations!
         vc.projectName = viewModel.ObjectTagDic[indexPath.row].name!

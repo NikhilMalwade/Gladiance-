@@ -15,9 +15,14 @@ final class SettingsViewModel{
     var eventHandler: ((_ event: Event) -> Void)? // Data Binding Closure
     
     var SceneListDic : SceneListModel!
+    var ScheduleListDic : schedulelistModel!
 
     var ObjectTagDic : [ObjectTag] = []
     var ConfigurationsDic : [Configurations] = []
+    var ScheduleListObjectTagDic : [schedulelistObjectTag] = []
+    var ScheduleListConfigurationsDic : [schedulelistConfigurations] = []
+    var TriggersDic : [Triggers] = []
+
     
     func sceneListApicall(){
         self.eventHandler?(.loading)
@@ -41,7 +46,7 @@ final class SettingsViewModel{
 //                    for i in self.ObjectTagDic{
 //                        ConfigurationsDic.append(contentsOf: i.configurations!)
 //                    }
-                    print(ObjectTagDic)
+//                    print(ObjectTagDic)
                     self.eventHandler?(.dataLoaded)
 
                 }
@@ -68,7 +73,38 @@ final class SettingsViewModel{
                         ObjectTagDic.append(i)
                         ConfigurationsDic.append(contentsOf: i.configurations!)
                     }
-                    print(ObjectTagDic)
+//                    print(ObjectTagDic)
+                    self.eventHandler?(.dataLoaded)
+
+                }
+            case .failure(_):
+                print("error")
+            }
+        }
+    }
+    
+    func scheduleListApicall(){
+        self.eventHandler?(.loading)
+        ApiCaller.shared.scheduleListApi() { [self] result in
+            self.eventHandler?(.stopLoading)
+            
+            switch result{
+                
+            case .success(let resultdata):
+                self.ScheduleListDic = resultdata
+                
+                if self.ScheduleListDic.successful == true{
+                    self.ScheduleListObjectTagDic = self.ScheduleListDic.objectTag!
+                   
+                    for i in self.ScheduleListDic.objectTag ?? []{
+                        ScheduleListObjectTagDic.append(i)
+                        ScheduleListConfigurationsDic.append(contentsOf: i.configurations!)
+                        TriggersDic.append(contentsOf: i.triggers!)
+
+                    }
+                    print(ScheduleListConfigurationsDic.count)
+                    print(TriggersDic.count)
+//                    print(ScheduleListObjectTagDic)
                     self.eventHandler?(.dataLoaded)
 
                 }

@@ -17,6 +17,8 @@ enum Endpoints:String {
     case nodeconfig = "mqtt/nodeconfig"
     case scenelist = "scenelist"
     case scene = "scene"
+    case schedulelist = "schedulelist"
+    
 //    mqtt/nodeconfig
 }
 

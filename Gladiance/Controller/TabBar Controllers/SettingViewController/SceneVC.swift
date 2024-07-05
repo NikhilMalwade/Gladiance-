@@ -21,9 +21,10 @@ class SceneVC: UIViewController {
     var Arrdata = [Configurations]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.viewModel.sceneListApicall()
         collectionViewSetup ()
         MoodCollectionView.reloadData()
+        lblProjectName.text = projectName
+        lblProjectType.text = type
 //        lblProjectType.text = dic.first
 
         // Do any additional setup after loading the view.
@@ -52,6 +53,7 @@ class SceneVC: UIViewController {
 extension SceneVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     
     func collectionViewSetup (){
+        self.viewModel.sceneApicall()
         MoodCollectionView.register(UINib(nibName: "EditableCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "EditableCollectionViewCell")
         observeEvent()
         
@@ -67,12 +69,19 @@ extension SceneVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollecti
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = MoodCollectionView.dequeueReusableCell(withReuseIdentifier: "EditableCollectionViewCell", for: indexPath) as! EditableCollectionViewCell
         
-        let dic = viewModel.ConfigurationsDic[indexPath.row]
+        let dic = Arrdata[indexPath.row]
         
         cell.lblTabName.text = dic.gAAProjectSpaceTypePlannedDeviceName!
 //        GAAProjectSpaceTypePlannedDeviceName!
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "SchedulingViewController") as! SchedulingViewController
+        
+        navigationController?.pushViewController(vc, animated: true)
+        
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             

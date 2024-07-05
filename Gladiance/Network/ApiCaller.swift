@@ -211,7 +211,7 @@ class ApiCaller: UIViewController {
     func sceneApi(completion: @escaping (Result<SceneListModel, Error>) -> () ){
 
         print(gAAProjectSpaceTypeAreaRef)
-        guard let url = URL(string: baseURL.rawValue + Endpoints.scene.rawValue + "/" + GAAProjectSceneRef + "/" + LoginToken + "/" + DeviceID ) else {
+        guard let url = URL(string: baseURL.rawValue + Endpoints.scene.rawValue + "/" + gAAProjectSpaceTypeAreaRef + "/" + LoginToken + "/" + DeviceID ) else {
             return
         }
         print(url)
@@ -228,5 +228,26 @@ class ApiCaller: UIViewController {
             }
         }.resume()
     }
+    func scheduleListApi(completion: @escaping (Result<schedulelistModel, Error>) -> () ){
+
+        print(gAAProjectSpaceTypeAreaRef)
+        guard let url = URL(string: baseURL.rawValue + Endpoints.schedulelist.rawValue + "/" + gAAProjectSpaceTypeAreaRef + "/" + LoginToken + "/" + DeviceID ) else {
+            return
+        }
+        print(url)
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data else {return}
+            
+            do {
+                let response = try JSONDecoder().decode(schedulelistModel.self, from: data)
+
+                completion(.success(response))
+            }catch{
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+    
 }
 
